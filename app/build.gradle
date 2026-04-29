@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Основни JUnit 5 библиотеки
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    
+    // Оваа линија е клучна за да се поправи грешката "Failed to load JUnit Platform"
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+application {
+    // Ова мора да се совпаѓа со твојата главна класа
+    mainClass = 'app.SI2026Lab2Main'
+}
+
+test {
+    useJUnitPlatform()
+}
